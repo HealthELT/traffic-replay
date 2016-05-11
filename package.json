@@ -1,0 +1,23 @@
+{
+  "name": "traffic-replay",
+  "version": "0.0.1",
+  "description": "Capture and replay http(s) traffic in NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "http",
+    "https",
+    "traffic",
+    "replay",
+    "log"
+  ],
+  "author": "Clayton Gulick",
+  "license": "MIT",
+  "dependencies": {
+    "concat-stream": "^1.5.1",
+    "request": "^2.72.0"
+  }
+}

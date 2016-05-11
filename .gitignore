@@ -1,0 +1,50 @@
+# Libraries
+node_modules
+generators/node_modules
+mobile/node_modules
+public/bower_components
+
+# Built production files
+dist
+healthelt-build.tgz
+
+# Process related
+generated
+process_control
+
+# IDEs and editors
+.idea
+*.swp
+*~
+.settings
+.vscode
+
+# Ingored dev files and uploads
+app/images/mapmarkersource/generatedsource/*
+public/dashboard/images/users/*
+public/uploads
+uploads
+
+# Built CSS
+public/dashboard/css/*
+public/dashboard/css/app.css
+public/mobile/css/ionic.css
+
+# Caches and Temporary Build Files
+.sass-cache
+.tmp
+*.map
+
+# OS Related
+.DS_Store
+*.log
+
+# VC Artifacts
+*.orig
+
+# Temp files and scripts
+script/test_data/members.json
+
+mobile/platforms
+mobile/www
+mobile/settings.js
