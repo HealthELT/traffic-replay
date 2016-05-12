@@ -93,7 +93,12 @@ function main() {
             port: 3000,
             mutate_session: true,
             session_key: "healthelt_sid",
-            debug: true
+            debug: true,
+            processors: [
+                function(request) {
+                    
+                }
+            ]
         }
     )
     
