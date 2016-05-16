@@ -27,7 +27,7 @@
 var fs = require('fs');
 
 var argv = require('minimist')(
-    process.argv.split(2),
+    process.argv.slice(2),
     {
         defaults: {
             filepath: '../application/uploads/traffic.json',
@@ -114,22 +114,24 @@ function main() {
     // define our config
     var config;
     if(argv.configfile) { // config file location defined, require it
-        config = require('argv.configfile');
+        config = require(argv.configfile);
     } else { // no file defined, make an empty config
         config = {};
     }
     
-    replay(
-        {
-            path: config.path || argv.filepath, //'../application/uploads/traffic.json',
-            host: config.host || argv.host, // 'localhost',
-            port: config.port || argv.port, // 3000,
-            mutate_session: config.mutate_session || argv.mutate, // true,
-            session_key: config.session_key || argv.sessionkey, // "healthelt_sid",
-            debug: config.debug || argv.debug, // set the debug flag
-            processors: config.processors || [] // these fire on replay
-        }
-    );
+    var run_config = {
+        path: config.path || argv.filepath, //'../application/uploads/traffic.json',
+        host: config.host || argv.host, // 'localhost',
+        port: config.port || argv.port, // 3000,
+        mutate_session: config.mutate_session || argv.mutate, // true,
+        session_key: config.session_key || argv.sessionkey, // "healthelt_sid",
+        debug: config.debug || argv.debug, // set the debug flag
+        processors: config.processors || [] // these fire on replay
+    };
+    
+    if(config.debug) console.log("Operating with configuration: ", run_config);
+    
+    replay(run_config);
     
 }
 
