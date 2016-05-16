@@ -24,7 +24,31 @@
  all copies or substantial portions of the Software.
  
  **/
+var fs = require('fs');
 
+var argv = require('minimist')(
+    process.argv.split(2),
+    {
+        defaults: {
+            filepath: '../application/uploads/traffic.json',
+            host: 'localhost',
+            port: 3000,
+            mutate: true,
+            sessionkey: "healthelt_sid",
+            debug: true,
+            config: '../application/config/traffic.js'
+        },
+        alias: {
+            'f': 'filepath',
+            'h': 'host',
+            'p': 'port',
+            'm': 'mutate',
+            'k': 'sessionkey',
+            'd': 'debug',
+            'c': 'configfile'
+        }
+    }
+);
 
 /**
  * Express middleware implementation. This will be returned from the config express when require('traffic-replay') is used.
@@ -86,21 +110,26 @@ function middleware(user_options) {
  */
 function main() {
     var replay = require('./lib/replay');
+    
+    // define our config
+    var config;
+    if(argv.configfile) { // config file location defined, require it
+        config = require('argv.configfile');
+    } else { // no file defined, make an empty config
+        config = {};
+    }
+    
     replay(
         {
-            path: '../application/uploads/traffic.json',
-            host: 'localhost',
-            port: 3000,
-            mutate_session: true,
-            session_key: "healthelt_sid",
-            debug: true,
-            processors: [
-                function(request) {
-                    
-                }
-            ]
+            path: config.path || argv.filepath, //'../application/uploads/traffic.json',
+            host: config.host || argv.host, // 'localhost',
+            port: config.port || argv.port, // 3000,
+            mutate_session: config.mutate_session || argv.mutate, // true,
+            session_key: config.session_key || argv.sessionkey, // "healthelt_sid",
+            debug: config.debug || argv.debug, // set the debug flag
+            processors: config.processors || [] // these fire on replay
         }
-    )
+    );
     
 }
 
