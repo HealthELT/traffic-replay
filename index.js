@@ -46,6 +46,7 @@ var argv = require('minimist')(
             'k': 'sessionkey',
             'd': 'debug',
             'c': 'configfile',
+            'w': 'fastforward', //advance n seconds into the replay file on start
             'v': 'validate' //parse the file and report errors, don't replay traffic
         }
     }
@@ -128,6 +129,7 @@ function main() {
         session_key: config.session_key || argv.sessionkey, // "healthelt_sid",
         debug: config.debug || argv.debug, // set the debug flag
         processors: config.processors || [], // these fire on replay
+        fastforward: config.fastforward || argv.fastforward || 0,
         validate: config.validate || argv.validate //only validate the file, don't replay it
     };
     
