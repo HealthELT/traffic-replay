@@ -5,6 +5,6 @@ module.exports = {
     mutate_session: true, // do we mutate the session? this re
     debug: true,
     processors: [
-        require('./processors/json_date_forwarding')
+        require('./processors/json_date_forwarding')({})
     ]
 };
