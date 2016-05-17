@@ -45,7 +45,8 @@ var argv = require('minimist')(
             'm': 'mutate',
             'k': 'sessionkey',
             'd': 'debug',
-            'c': 'configfile'
+            'c': 'configfile',
+            'v': 'validate' //parse the file and report errors, don't replay traffic
         }
     }
 );
@@ -126,7 +127,8 @@ function main() {
         mutate_session: config.mutate_session || argv.mutate, // true,
         session_key: config.session_key || argv.sessionkey, // "healthelt_sid",
         debug: config.debug || argv.debug, // set the debug flag
-        processors: config.processors || [] // these fire on replay
+        processors: config.processors || [], // these fire on replay
+        validate: config.validate || argv.validate //only validate the file, don't replay it
     };
     
     if(config.debug) console.log("Operating with configuration: ", run_config);
