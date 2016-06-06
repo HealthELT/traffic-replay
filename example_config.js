@@ -1,7 +1,7 @@
 module.exports = {
-    path: '../traffic-2016-05-13-a.json', // path to the file to replay
+    path: '../traffic.json', // path to the file to replay
     host: 'localhost', // the host to replay to
-    port: '3000', // the port to replay on
+    port: '3443', // the port to replay on
     mutate_session: true, // do we mutate the session? this re
     session_key: "healthelt_sid",
     debug: true,
